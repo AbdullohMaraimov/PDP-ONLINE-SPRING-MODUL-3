@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Update</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        form {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 300px;
+        }
+
+        input {
+            width: 100%;
+            margin-bottom: 10px;
+            padding: 8px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        input[type="submit"] {
+            background-color: #4caf50;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        input[type="text"]::placeholder {
+            color: #aaa;
+        }
+    </style>
+</head>
+<body>
+<form method="post" th:object="${book}" th:action="@{/book/update}">
+  <input type="hidden" name="id" th:field="*{id}">
+  <input type="text" name="title" th:field="*{title}" th:value="*{title}" placeholder="Book name">
+  <input type="text" name="author" th:field="*{author}"  th:value="*{author}" placeholder="Book author">
+  <input type="text" name="price" th:field="*{price}" th:value="*{price}" placeholder="Book price">
+  <input type="text" name="description" th:field="*{description}" th:value="*{description}" placeholder="Book description">
+  <input type="submit" value="Update">
+</form>
+</body>
+</html>
