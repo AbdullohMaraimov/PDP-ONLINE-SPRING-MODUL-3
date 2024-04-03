@@ -26,13 +26,22 @@ public class SecurityConfig {
     private final JwtAuthFilter authFilter;
 
     private final UserService userService;
-
+    private static final String[] WHITE_LIST_RESOURCES = {
+            "/actuator/**",
+            "/swagger-ui/**",
+            "/swagger-ui.html",
+            "/v3/api-docs/**",
+            "/swagger-resources/**",
+            "/webjars/**",
+            "/api/v1/auth/**"
+    };
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
         http.csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(request -> request.requestMatchers("/api/v1/auth/**")
                         .permitAll()
+                        .requestMatchers(WHITE_LIST_RESOURCES).permitAll()
                         .requestMatchers("/api/v1/item/**").hasAnyAuthority(Role.ROLE_ADMIN.name())
                         .anyRequest().authenticated())
 
