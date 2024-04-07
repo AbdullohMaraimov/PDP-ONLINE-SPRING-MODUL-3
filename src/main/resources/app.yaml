@@ -1,0 +1,11 @@
+person:
+  id:1
+  name:Ali
+  age:11
+
+students:
+  - Ali
+  - Vali
+  - Guli
+  - G'ani
+  - Jim
